@@ -1,11 +1,15 @@
 $(document).ready(function() {
 
 	// Declare global variables
-	var cards = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8]; //card property with array of values
 	var count = 0;
+	var cards = [1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8];
+
+	// magic number; -1 denotes the default, unset value for a click
 	var clickArray = [-1, -1];
+
 	// there are 8 pairs, when pairs reach 0, game is over!
 	var numPairs = 8;
+
 	var timer = {
  		seconds: 0,
   		minutes: 0,
@@ -18,22 +22,23 @@ $(document).ready(function() {
 	function init() { //initial method that calls the shuffle method
 		shuffle();
 		assign();
+		// TODO: initialize timer
 	}
 		
-	function shuffle() { //shuffle method that shuffles the deck
+	function shuffle() {
 		var j = 0;
 		var x = 0;
 	
     	for (var i = 0; i < cards.length; i++) {
-        	j = Math.floor(Math.random()*i);
-       		x = cards[i];
-       		cards[i] = cards[j];
-       		cards[j] = x;
-		}	
-		console.log('Shuffled Card Array: '+ cards);		
+    		j = Math.floor(Math.random()*i);
+    		x = cards[i];
+    		cards[i] = cards[j];
+    		cards[j] = x;
+    	}
+    	console.log('Shuffled Card Array: '+ cards);		
 	}
 
-	function assign() { // assigns new values of array into divs
+	function assign() {
 		for (i = 0; i < cards.length; i++) {
 
 			var cardId = "#card" + (i + 1);
@@ -79,7 +84,7 @@ $(document).ready(function() {
 
 				// cards are set, lets compare!			
 				if (compareCards(cardElement, cardValue)) {
-					console.log("Match!");
+					console.log("[+] Match!");
 					// Do not turn card click back on, they are both out of the game!
 					numPairs--; // decrement pairs
 					if (numPairs == 0) {
@@ -90,10 +95,10 @@ $(document).ready(function() {
 				} 
 
 				else {
-					console.log("Fail!");
+					console.log("[-] No match, try again!");
 					// Turn this card, and the card pointed to by FirstCard on
-					createHandler(FirstCard); // active the card clicked before this
-					createHandler($(this)); // active this card again
+					createHandler(FirstCard); // activate the card clicked before this
+					createHandler($(this)); // activate this card again
 				}
 			}
 		}); // end cardElement.click()
@@ -113,19 +118,29 @@ $(document).ready(function() {
 			return 0;
 		}
 
-		else { 
-			if (firstClick == secondClick) {
-				retVal = true;
-			} else {
-				retVal = false;
-			}
+		else {
+			// This is called a ternary statement; its a short-hand way of doing if-else statements.
+			// The corresponding if-else code is below for comparison.
+
+			retVal = (firstClick == secondClick) ? true : false;
+			
+			// OR
+			// (firstClick == secondClick) ? retVal = true : retVal = false;
+
+			// if (firstClick == secondClick) {
+			//  	retVal = true;
+			// } 
+
+			// else {
+			//  	retVal = false;
+			// }
 		}
 
 		// At the end, we must reset clickArray
 		clickArray[0] = -1;
 		clickArray[1] = -1;
 
-		// TODO: Decrement turns
+		// TODO: Decrement turns count
 		return retVal;
 	}
 /*
