@@ -128,7 +128,7 @@ $(document).ready(function() {
 		// TODO: Decrement turns
 		return retVal;
 	}
-
+/*
 	function clickHandlers(a) { //determines if values in cards are equal
 		count++;
 		click = a.currentTarget.innerHTML;  //gets the value of the current element that was clicked
@@ -187,7 +187,7 @@ $(document).ready(function() {
   		$(".timer").text("0:00");
 
   		timer.clearTime = setInterval(startTimer, 1000);
-	}
+	} */
 
 	/*function showMode() {
  		mode.css("display", "block");
@@ -219,12 +219,14 @@ $(document).ready(function() {
 
 
 	init();
+	// Move this to init() once it works
+	// Hint: startTimer() will likely need to be an async. function. We will get to that later!
 	//startTimer();//timer only shows 1 second..???
 
-	var className = document.getElementsByClassName('num');
+	//var className = document.getElementsByClassName('num');
 
 	//creates an event listerner for all cards
-	for (var i = 0; i < className.length; i++) {
+	/*for (var i = 0; i < className.length; i++) {
    		className[i].addEventListener('click', clickHandlers, false);
-	}
+	}*/
 }); // end $(document).ready()
