@@ -48,7 +48,7 @@ h3{
     margin-left: 50px;
 }
 
-.gameSpace{
+.gameSpace {
     width: 660px;
     min-height: 680px;
     background: linear-gradient(160deg, #000099 0%, #9966ff 100%);
@@ -76,8 +76,6 @@ h3{
     box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
 }
 
-
-
 .score-panel {
     text-align: left;
     width: 345px;
@@ -103,5 +101,3 @@ h3{
     cursor: pointer;
     color: white;
 }
-
-
